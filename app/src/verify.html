@@ -69,6 +69,9 @@
         .checkbox label input[type="checkbox"]:checked+.cr>.cr-icon {
             opacity: 1;
         }
+        .records {
+            margin: 15px;
+        }
     </style>
 
 </head>
@@ -101,143 +104,19 @@
         </div>
 
     </nav>
+    <!-- <div>
+        <iframe src="http://localhost:8080/ipfs/QmQysmDDCUZi6tZUgUJsZPmLWWqCZW1iomJF36Pr9rsdCy"
+            style="width:600px; height:500px;" frameborder="0"></iframe>
+    </div> -->
 
-    <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Your Account</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-offset-1 col-sm-10">
-                        <table class="table">
-                            <tr>
-                                <th>Name:</th>
-                                <td id="name"></td>
-                            </tr>
-                            <tr>
-                                <th>Age:</th>
-                                <td id="age"></td>
-                            </tr>
-                        </table>
-
-                        <div class="text-center">
-                            <h5>Your records are stored here: http://localhost:8080/ipfs/<span id="recordsHash"></span>
-                            </h5>
-                            <button type="submit" class="btn btn-info btn-lg" onclick="showRecords(this)">View medical
-                                records</button>
-
-                        </div>
-                        <pre id="records" style="margin-top: 20px;">
-
-                            </pre>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Upload PDF</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="alert alert-info col-sm-8 col-sm-offset-2">
-                        <strong>Info!</strong> The doctor already has access to your records. Revoke access or wait for
-                        time duration to end to continue.
-                    </div>
-                </div>
+    <div style="display: flex;flex-direction: column; justify-content: center; align-items: center; ">
+        <button type="submit" class="btn btn-info btn-lg records"  onclick="showRecords(this)">Verify</button>
+        <iframe src="http://localhost:8080/ipfs/QmQysmDDCUZi6tZUgUJsZPmLWWqCZW1iomJF36Pr9rsdCy"
+            style="width: 900px; height: 600px;" frameborder="0"></iframe>
+    </div>
+   
 
 
-                <form class="form-horizontal" action="/action_page.php">
-                    <div class="form-group">
-                        <label for="permitDoctorList" class="control-label col-sm-2">Doctor:</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="permitDoctorList">
-                                <option selected disabled>-- Please Select --</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-                <div class="text-center">
-                    <button onclick="giveAccess()" class="btn btn-primary btn-lg">Submit</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Select Signee's</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="alert alert-info col-sm-8 col-sm-offset-2">
-                        <strong>Info!</strong> The doctor already has access to your records. Revoke access or wait for
-                        time duration to end to continue.
-                    </div>
-                </div>
-
-
-                <!-- <form class="form-horizontal" action="/action_page.php">
-                    <div class="form-group">
-                        <label for="permitDoctorList" class="control-label col-sm-2">Doctor:</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="permitDoctorList">
-                                <option selected disabled>-- Please Select --</option>
-                            </select>
-                        </div>
-                    </div>
-                </form> -->
-                <form>
-                    <div>
-                        <label for="name1">Name:</label>
-                        <input type="text" id="name1" name="name1" placeholder="Enter your name">
-                        
-                        <label for="email1">Email:</label>
-                        <input type="email" id="email1" name="email1" placeholder="Enter your email">
-                    </div>
-                    
-                    <div>
-                        <label for="name2">Name:</label>
-                        <input type="text" id="name2" name="name2" placeholder="Enter your name">
-                        
-                        <label for="email2">Email:</label>
-                        <input type="email" id="email2" name="email2" placeholder="Enter your email">
-                    </div>
-                    
-                </form>
-                <div class="text-center">
-                    <button onclick="giveAccess()" class="btn btn-primary btn-lg">Submit</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Document Status</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="alert alert-danger col-sm-8 col-sm-offset-2">
-                        <strong>Notice!</strong> The access could not be revoked. Please retry or contact admin.
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-offset-1 col-sm-10">
-                        <table id="accessDoc" class="table table-hover">
-                            <tr>
-                                <th>Document Name</th>
-                                <th class="publicKeyDoctor">Public Key</th>
-                                <th>Status/File</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
     <script src="https://smtpjs.com/v3/smtp.js">
     </script>
@@ -353,6 +232,9 @@
             });
 
         });
+        function verify(element) {
+            
+        }
         function showRecords(element) {
             if (toggleRecordsButton % 2 == 0) {
 
