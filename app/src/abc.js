@@ -224,17 +224,17 @@ Comments : ${comments}
                         console.log(error)
                     } else {
                         console.log(result)
-                        // ipfshash = result[0].hash;
-                        // contractInstance.insurance_claim(patientAddress, diagnosis, ipfshash, { gas: 1000000 }, function (error, result) {
-                        //     if (!error) {
-                        //         alert("Your diagnosis has been submitted.");
-                        //         table.deleteRow(index + 1);
-                        //         table.deleteRow(index);
-                        //     } else {
-                        //         $(".alert-danger").show();
-                        //         console.log(error);
-                        //     }
-                        // })
+                        ipfshash = result[0].hash;
+                        contractInstance.insurance_claim(patientAddress, diagnosis, ipfshash, { gas: 1000000 }, function (error, result) {
+                            if (!error) {
+                                alert("Your diagnosis has been submitted.");
+                                table.deleteRow(index + 1);
+                                table.deleteRow(index);
+                            } else {
+                                $(".alert-danger").show();
+                                console.log(error);
+                            }
+                        })
                     }
                 });
 

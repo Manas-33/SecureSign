@@ -245,32 +245,17 @@
 
                 toggleRecordsButton += 1
 
-                element.innerHTML = "Hide Medical Records";
-                element.className = "btn btn-info btn-lg";
+                // element.innerHTML = "Hide Medical Records";
+                // element.className = "btn btn-info btn-lg";
             } else {
                 $("#records").hide();
                 toggleRecordsButton -= 1;
-                element.innerHTML = "View Medical Records";
-                element.className = "btn btn-info btn-lg"
+                // element.innerHTML = "View Medical Records";
+                // element.className = "btn btn-info btn-lg"
             }
 
         }
-        var link = "youtube.com"
-        function sendEmail() {
-            Email.send({
-                Host: "smtp.gmail.com",
-                Username: "sketched64@gmail.com",
-                Password: "hemloguyz",
-                To: 'manas.dalvi21@vit.edu',
-                From: "sketched64@gmail.com",
-                Subject: "Sending Email using javascript",
-                Body: `Well that was ${link} was easy!!`,
-            })
-                .then(function (message) {
-                    alert("Mail has been sent successfully")
-                });
-        }
-
+        
         function giveAccess() {
 
             var list = document.getElementById("permitDoctorList");
