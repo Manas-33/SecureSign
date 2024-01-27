@@ -69,6 +69,45 @@
         .checkbox label input[type="checkbox"]:checked+.cr>.cr-icon {
             opacity: 1;
         }
+
+        .records {
+            margin: 15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #infoTable {
+            display: none;
+        }
+
+        temp {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 
 </head>
@@ -101,143 +140,47 @@
         </div>
 
     </nav>
-
-    <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Your Account</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-offset-1 col-sm-10">
-                        <table class="table">
-                            <tr>
-                                <th>Name:</th>
-                                <td id="name"></td>
-                            </tr>
-                            <!-- <tr>
-                                <th>Age:</th>
-                                <td id="age"></td>
-                            </tr> -->
-                        </table>
-
-                        <div class="text-center">
-                            <h5>Your records are stored here: http://localhost:8080/ipfs/<span id="recordsHash"></span>
-                            </h5>
-                            <!-- <button type="submit" class="btn btn-info btn-lg" onclick="showRecords(this)">medical
-                                records</button>View  -->
-
-                        </div>
-                        <pre id="records" style="margin-top: 20px;">
-
-                            </pre>
-
-                    </div>
-                </div>
-
-            </div>
+    <!-- <div>
+        <iframe src="http://localhost:8080/ipfs/QmQysmDDCUZi6tZUgUJsZPmLWWqCZW1iomJF36Pr9rsdCy"
+            style="width:600px; height:500px;" frameborder="0"></iframe>
+    </div> -->
+    <div>
+        <table id="infoTable">
+            <tr>
+                <td>Attribute</td>
+                <td>Value</td>
+            </tr>
+            <tr>
+                <td>Signee</td>
+                <td>Manas Dalvi</td>
+            </tr>
+            <tr>
+                <td>Hash</td>
+                <td>QmcozjsKDkEsBLAsVSQugjmzvJyAEFXshzW33sEDec6Byf</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>Notarized</td>
+            </tr>
+            <tr>
+                <td>Timestamp</td>
+                <td id="timestamp"></td>
+            </tr>
+        </table>
+    </div>
+    <div class=" temp">
+        <div class="temp">
+            <input type="file" name="file" id="file" accept=".pdf">
         </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Upload PDF</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="alert alert-info">
-                        <strong>Info!</strong> The doctor already has access to your records. Revoke access or wait for
-                        time duration to end to continue.
-                    </div>
-                </div>
+    </div>
+    <div style="display: flex;flex-direction: column; justify-content: center; align-items: center; ">
+        <button type="submit" class="btn btn-info btn-lg records" onclick="toggleTable()">Verify</button>
+        <!-- <iframe src="http://localhost:8080/ipfs/QmQysmDDCUZi6tZUgUJsZPmLWWqCZW1iomJF36Pr9rsdCy"
+            style="width: 900px; height: 600px;" frameborder="0"></iframe> -->
+    </div>
 
 
 
-                <div class="text-center">
-                    <div>
-                        <input type="file" name="file" id="file" accept=".pdf" class="text-center">
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <!-- <button onclick="giveAccess()" class="btn btn-primary btn-lg">Submit</button> -->
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Select Signee's</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="alert alert-info col-sm-8 col-sm-offset-2">
-                        <strong>Info!</strong> The doctor already has access to your records. Revoke access or wait for
-                        time duration to end to continue.
-                    </div>
-                </div>
-
-
-                <form class="form-horizontal" action="/action_page.php">
-                    <div class="form-group">
-                        <label for="permitDoctorList" class="control-label col-sm-2">Notarizer:</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="permitDoctorList">
-                                <option selected disabled>-- Select Official Notarizer --</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-                <div class="text-center">
-                    <form>
-                        <div style="margin-bottom: 20px;">
-                            <!-- <label for="name1">Name:</label> -->
-                            <!-- <input type="text" id="name1" name="name1" placeholder="Enter your name"> -->
-                            <!-- <label for="name">Name:</label>
-                            <input type="name" id="name" name="name" placeholder="Enter the Name"> -->
-                            <label for="email1">Email:</label>
-                            <input type="email" id="email1" name="email1" placeholder="Enter the email">
-                        </div>
-
-                        <!-- <div>
-                            <label for="name2">Name:</label>
-                            <input type="text" id="name2" name="name2" placeholder="Enter your name">
-                            
-                            <label for="email2">Email:</label>
-                            <input type="email" id="email2" name="email2" placeholder="Enter your email">
-                        </div> -->
-
-                    </form>
-                </div>
-                <div class="text-center">
-                    <button onclick="giveAccess()" class="btn btn-primary btn-lg">Submit</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="text-center">Document Status</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="alert alert-danger col-sm-8 col-sm-offset-2">
-                        <strong>Notice!</strong> The access could not be revoked. Please retry or contact admin.
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-offset-1 col-sm-10">
-                        <table id="accessDoc" class="table table-hover">
-                            <tr>
-                                <th>Document Name</th>
-                                <th class="publicKeyDoctor">Public Key</th>
-                                <th>Status/File</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
     <script src="https://smtpjs.com/v3/smtp.js">
     </script>
@@ -254,14 +197,25 @@
         var url = new URL(url_string);
         var key;
 
-        const links = [
-            'QmQysmDDCUZi6tZUgUJsZPmLWWqCZW1iomJF36Pr9rsdCy',
-            'QmTzeuMjnKueSpJb6q3XqbHJP1zvDcaefG9X9Y8Z4EzK4H',
-            'QmcozjsKDkEsBLAsVSQugjmzvJyAEFXshzW33sEDec6Byf',
-            'QmYyKeaDmypkLrQVfx1V52fDy8ptCjciRCTCCJfWiQxMY7'
-        ];
         toggleRecordsButton = 0;
         var recordHash = "";
+        function updateTimestamp() {
+            var timestampElement = document.getElementById('timestamp');
+            var currentTime = new Date();
+            var formattedTime = currentTime.toLocaleString();
+            timestampElement.textContent = formattedTime;
+        }
+
+        // Call the function initially
+        updateTimestamp();
+
+        // Set up an interval to update the timestamp every second
+        // setInterval(updateTimestamp, 1000000000000000000);
+        function toggleTable() {
+            var table = document.getElementById('infoTable');
+            table.style.display = (table.style.display === 'none' || table.style.display === '') ? 'table' : 'none';
+        }
+
 
         $(window).load(function () {
             connect();
@@ -359,6 +313,9 @@
             });
 
         });
+        function verify(element) {
+
+        }
         function showRecords(element) {
             if (toggleRecordsButton % 2 == 0) {
 
@@ -369,13 +326,13 @@
 
                 toggleRecordsButton += 1
 
-                element.innerHTML = "Hide Medical Records";
-                element.className = "btn btn-info btn-lg";
+                // element.innerHTML = "Hide Medical Records";
+                // element.className = "btn btn-info btn-lg";
             } else {
                 $("#records").hide();
                 toggleRecordsButton -= 1;
-                element.innerHTML = "View Medical Records";
-                element.className = "btn btn-info btn-lg"
+                // element.innerHTML = "View Medical Records";
+                // element.className = "btn btn-info btn-lg"
             }
 
         }
@@ -383,7 +340,6 @@
         function giveAccess() {
 
             var list = document.getElementById("permitDoctorList");
-
             index = list.selectedIndex;
 
             var DoctorList = 0;

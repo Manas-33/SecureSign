@@ -73,6 +73,16 @@ contract Agent {
         
     }
 
+    function sendRequest(address addr) payable public {
+        require(msg.value == 2 ether);
+
+        creditPool += 2;
+        
+        doctorInfo[addr].patientAccessList.push(msg.sender)-1;
+        patientInfo[msg.sender].doctorAccessList.push(addr)-1;
+        
+    }
+
     function insurance_claim(address paddr, uint _diagnosis, string memory  _hash) public {
         bool patientFound = false;
         for(uint i = 0;i<doctorInfo[msg.sender].patientAccessList.length;i++){
