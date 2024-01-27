@@ -215,7 +215,7 @@
 
         }
         var patientAddress;
-        var count=0;
+
         function showRecords(element) {
 
             var table = document.getElementById("viewPatient");
@@ -233,7 +233,7 @@
                         $.get("http://localhost:8080/ipfs/" + result, function (data) {
                             patientRecord = data;
 
-                            content = `<iframe src="http://localhost:8080/ipfs/${links[count]}"
+                            content = `<iframe src="http://localhost:8080/ipfs/${links[0]}"
             style="width: 900px; height: 600px;" frameborder="0"></iframe>
             <button class="btn btn-primary" onclick = "submitDiagnosis(${index})">Verify Document</button>`
                             //     content = `<div class="tab-content">
